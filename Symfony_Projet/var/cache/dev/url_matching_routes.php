@@ -8,6 +8,19 @@
 return [
     false, // $matchHost
     [ // $staticRoutes
+        '/api/register' => [[['_route' => 'api_register', '_controller' => 'App\\Controller\\ApiController::register'], null, ['POST' => 0], null, false, false, null]],
+        '/api/login' => [[['_route' => 'api_login', '_controller' => 'App\\Controller\\LoginController::login'], null, ['POST' => 0], null, false, false, null]],
+        '/api/check-auth' => [[['_route' => 'api_check_auth', '_controller' => 'App\\Controller\\AuthController::checkAuth'], null, ['GET' => 0], null, false, false, null]],
+        '/api/joueurs' => [
+            [['_route' => 'get_joueurs', '_controller' => 'App\\Controller\\JoueurController::getJoueurs'], null, ['GET' => 0], null, false, false, null],
+            [['_route' => 'add_joueur', '_controller' => 'App\\Controller\\JoueurController::addJoueur'], null, ['POST' => 0], null, false, false, null],
+        ],
+        '/api/produits' => [
+            [['_route' => 'get_products', '_controller' => 'App\\Controller\\BoutiqueAdminController::getProducts'], null, ['GET' => 0], null, false, false, null],
+            [['_route' => 'add_product', '_controller' => 'App\\Controller\\BoutiqueAdminController::addProduct'], null, ['POST' => 0], null, false, false, null],
+            [['_route' => 'boutique_add_product', '_controller' => 'App\\Controller\\BoutiqueAdminController::addProduct'], null, ['POST' => 0], null, false, false, null],
+            [['_route' => 'boutique_get_products', '_controller' => 'App\\Controller\\BoutiqueAdminController::getProducts'], null, ['GET' => 0], null, false, false, null],
+        ],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -24,9 +37,18 @@ return [
                         .'|validation_errors/([^/]++)(?'
                             .'|(*:241)'
                         .')'
+                        .'|joueurs/([^/]++)(?'
+                            .'|(*:269)'
+                        .')'
+                        .'|produits/(?'
+                            .'|([^/]++)(*:298)'
+                            .'|(\\d+)/stock(?'
+                                .'|(*:320)'
+                            .')'
+                        .')'
                     .')'
                 .')'
-                .'|/_error/(\\d+)(?:\\.([^/]++))?(*:280)'
+                .'|/_error/(\\d+)(?:\\.([^/]++))?(*:360)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -41,7 +63,16 @@ return [
             [['_route' => '_api_validation_errors_hydra', '_controller' => 'api_platform.symfony.main_controller', '_format' => null, '_stateless' => true, '_api_resource_class' => 'ApiPlatform\\Validator\\Exception\\ValidationException', '_api_operation_name' => '_api_validation_errors_hydra'], ['id'], ['GET' => 0], null, false, true, null],
             [['_route' => '_api_validation_errors_jsonapi', '_controller' => 'api_platform.symfony.main_controller', '_format' => null, '_stateless' => true, '_api_resource_class' => 'ApiPlatform\\Validator\\Exception\\ValidationException', '_api_operation_name' => '_api_validation_errors_jsonapi'], ['id'], ['GET' => 0], null, false, true, null],
         ],
-        280 => [
+        269 => [
+            [['_route' => 'update_joueur', '_controller' => 'App\\Controller\\JoueurController::updateJoueur'], ['id'], ['PUT' => 0], null, false, true, null],
+            [['_route' => 'delete_joueur', '_controller' => 'App\\Controller\\JoueurController::deleteJoueur'], ['id'], ['DELETE' => 0], null, false, true, null],
+        ],
+        298 => [[['_route' => 'boutique_delete_product', '_controller' => 'App\\Controller\\BoutiqueAdminController::deleteProduct'], ['id'], ['DELETE' => 0], null, false, true, null]],
+        320 => [
+            [['_route' => 'boutique_update_stock', '_controller' => 'App\\Controller\\BoutiqueAdminController::updateStock'], ['id'], ['PUT' => 0], null, false, false, null],
+            [['_route' => 'update_stock', '_controller' => 'App\\Controller\\BoutiqueAdminController::updateStock'], ['id'], ['PUT' => 0], null, false, false, null],
+        ],
+        360 => [
             [['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

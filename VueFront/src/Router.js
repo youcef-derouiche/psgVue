@@ -1,31 +1,79 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import Login from './components/Login.vue'; // Composant pour la page de connexion
-import Register from './components/Register.vue'; // Composant pour la page d'inscription
-import Calendrier from './components/Calendrier.vue';
-import Meteo from './components/Meteo.vue';
+import Login from './components/Login.vue'; 
+import Register from './components/Register.vue'; 
+import Classement from './components/Classement.vue';
+import PsgResults from './components/PsgResults.vue';
+import AccueilUser from './components/AccueilUser.vue';
+import AccueilAdmin from './components/AccueilAdmin.vue';
+import JoueursAdmin from './components/JoueursAdmin.vue';
+import JoueursUser from './components/JoueursUser.vue';
+import BoutiqueAdmin from './components/BoutiqueAdmin.vue';
+import BoutiqueUser from './components/BoutiqueUser.vue';
 
 // Configuration des routes
 const routes = [
   {
-    path: '/', // Chemin pour la page de connexion
+    path: '/login',
     name: 'Login',
     component: Login,
   },
   {
-    path: '/register', // Chemin pour la page d'inscription
+    path: "/BoutiqueUser",
+    name: "BoutiqueUser",
+    component: BoutiqueUser,
+  },
+  
+  {
+    path: '/BoutiqueAdmin',
+    name: 'BoutiqueAdmin',
+    component: BoutiqueAdmin,
+  },
+
+  {
+    path: '/JoueursAdmin',
+    name: 'JoueursAdmin',
+    component: JoueursAdmin,
+  },
+  {
+    path: '/JoueursUser',
+    name: 'JoueursUser',
+    component: JoueursUser,
+  },
+
+  {
+    path: '/register',
     name: 'Register',
     component: Register,
   },
   {
-    path: '/calendrier', // Chemin pour la page d'inscription
-    name: 'Calendrier',
-    component: Calendrier,
+    path: '/Classement',
+    name: 'Classement',
+    component: Classement,
   },
   {
-    path: '/meteo', // Chemin pour la page d'inscription
-    name: 'Meteo',
-    component: Meteo,
+    path: '/psg-results',
+    name: 'PsgResults',
+    component: PsgResults,
   },
+  {
+    path: '/AccueilUser',
+    name: 'AccueilUser',
+    component: AccueilUser,
+  },
+  {
+    path: '/AccueilAdmin',
+    name: 'AccueilAdmin',
+    component: AccueilAdmin,
+  },
+  {
+    path: '/',
+    redirect: '/login', // Redirige vers la page de connexion par défaut
+  },
+  {
+    path: '/:pathMatch(.*)*', // Gestion des routes inexistantes
+    redirect: '/login',
+  },
+
 ];
 
 // Création du routeur
@@ -34,4 +82,5 @@ const router = createRouter({
   routes,
 });
 
+// Exportation du routeur
 export default router;

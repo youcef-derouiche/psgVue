@@ -1,5 +1,77 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+# config/routes.yaml
+
+api_register:
+    path: /api/register
+    controller: App\Controller\ApiController::register
+    methods: POST
+
+# config/routes.yaml
+
+api_login:
+    path: /api/login
+    controller: App\Controller\LoginController::login
+    methods: POST
+
+api_check_auth:
+    path: /api/check-auth
+    controller: App\Controller\AuthController::checkAuth
+    methods: GET
+
+get_joueurs:
+    path: /api/joueurs
+    controller: App\Controller\JoueurController::getJoueurs
+    methods: GET
+
+add_joueur:
+    path: /api/joueurs
+    controller: App\Controller\JoueurController::addJoueur
+    methods: POST
+
+update_joueur:
+    path: /api/joueurs/{id}
+    controller: App\Controller\JoueurController::updateJoueur
+    methods: PUT
+
+delete_joueur:
+    path: /api/joueurs/{id}
+    controller: App\Controller\JoueurController::deleteJoueur
+    methods: DELETE
+get_products:
+  path: /api/produits
+  controller: App\Controller\BoutiqueAdminController::getProducts
+  methods: GET
+
+add_product:
+  path: /api/produits
+  controller: App\Controller\BoutiqueAdminController::addProduct
+  methods: POST
+
+boutique_add_product:
+    path: /api/produits
+    controller: App\Controller\BoutiqueAdminController::addProduct
+    methods: POST
+
+boutique_get_products:
+    path: /api/produits
+    controller: App\Controller\BoutiqueAdminController::getProducts
+    methods: GET
+
+boutique_delete_product:
+    path: /api/produits/{id}
+    controller: App\Controller\BoutiqueAdminController::deleteProduct
+    methods: DELETE
+
+boutique_update_stock:
+    path: /api/produits/{id}/stock
+    controller: App\Controller\BoutiqueAdminController::updateStock
+    methods: PUT
+    requirements:
+        id: '\d+'
+
+update_stock:
+    path: /api/produits/{id}/stock
+    controller: App\Controller\BoutiqueAdminController::updateStock
+    methods: [PUT]
+    requirements:
+        id: '\d+' 
+
